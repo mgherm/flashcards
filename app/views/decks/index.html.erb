@@ -1,4 +1,12 @@
+<%= javascript_include_tag :defaults %>
+<%= csrf_meta_tag %>
+
 <div><%= link_to "New Deck", "/decks/new" %></div>
 <% @decks.each do |deck| %>
-   <div> <%= link_to deck.name, "/decks/#{deck.id}" %></div>
+   <div>
+     <%= link_to deck.name, "/decks/#{deck.id}" %>
+     -
+     <%= link_to "edit", "/decks/#{deck.id}/edit", data: {confirm: "confirm delete",}  %>
+     <%= button_to "delete", "/decks/#{deck.id}", method: "delete", remote: true, data: {confirm: "confirm delete",}  %>
+   </div>
 <% end %>
